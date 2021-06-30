@@ -93,7 +93,7 @@ export const HomeScreen = () => {
                                             return val
                                         }
                                     }).map((name, index) => (
-                                        <Link to={`./breed/${name}`} key={name, index} className="block p-3 hover:bg-gray-300">{name}</Link>
+                                        <Link to={`./breed/${name}`} key={nameh} className="block p-3 hover:bg-gray-300">{name}</Link>
                                     ))
                                 }
                                 {
