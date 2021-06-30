@@ -22,7 +22,7 @@ export const CatScreen = () => {
     const dispatch = useDispatch();
     const { breedName } = useParams();
 
-    const [breedImage, setBridImage] = useState({});
+    const [breedImage, setBreedImage] = useState({});
 
 
     const { breedSearched, breedSearchedImages } = useSelector(state => state.breed);
@@ -32,7 +32,9 @@ export const CatScreen = () => {
     }, [dispatch, breedName])
 
     useEffect(() => {
-        if (breedSearched) {
+        console.log("breed", breedSearched);
+
+        if (breedSearched && !Object.keys(breedSearched).length == 0) {
             dispatch(breedSearchedImagesStartLoading(breedSearched.id));
 
             fetch(`https://api.thecatapi.com/v1/images/${breedSearched.reference_image_id}`, {
@@ -41,7 +43,7 @@ export const CatScreen = () => {
                     'x-api-key': 'DEMO-API-KEY'
                 }
             }).then(res => res.json())
-                .then(r => setBridImage(r.url));
+                .then(r => setBreedImage(r.url));
         }
     }, [dispatch, breedSearched])
 
@@ -80,7 +82,7 @@ export const CatScreen = () => {
 
             <div className="container mx-auto mb-32 ">
                 <h1 className="text-4xl text-brown font-semibold mb-10 m-4">Other photos</h1>
-          
+
                 <div className="flex flex-wrap">
                     {
                         breedSearchedImages.map(breed => (

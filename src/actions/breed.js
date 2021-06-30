@@ -52,11 +52,9 @@ export const breedSearchedStartLoading = (breedName) => {
     return async (dispatch) => {
         try {
 
-            dispatch(breadLoadingBreedSearch());
 
             const respBreed = await fetchCatWiki('breeds/search', 'GET', { q: breedName });
             const bodyBreed = await respBreed.json();
-
             const breed = bodyBreed;
             dispatch(breedLoadBreedSearched(breed[0]));
 
@@ -66,8 +64,8 @@ export const breedSearchedStartLoading = (breedName) => {
     }
 }
 
-const breadLoadingBreedSearch = () => ({
-    type: types.breadLoadingBreedSearch
+const breedLoadingBreedSearch = () => ({
+    type: types.breedLoadingBreedSearch
 })
 
 const breedLoadBreedSearched = (breed) => ({
